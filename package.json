@@ -1,6 +1,7 @@
 {
-  "name": "with-tailwindcss",
+  "name": "project-template",
   "version": "0.1.0",
+  "repository": "github:carlesandres/project-template",
   "private": true,
   "scripts": {
     "dev": "next dev",

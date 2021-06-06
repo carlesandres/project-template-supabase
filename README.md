@@ -1,6 +1,8 @@
 # Project template
 
-This is meant to be used with `yarn create next-app`.
+This is meant to be used by executing:
+
+`yarn create next-app -e https://github.com/carlesandres/project-template`.
 
 
 This project template includes:
