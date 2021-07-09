@@ -1,8 +1,10 @@
 # Project template
 
-This is meant to be used by executing:
+Execute:
 
-`yarn create next-app -e https://github.com/carlesandres/project-template`.
+`yarn create next-app -e https://github.com/carlesandres/project-template`
+
+You **don't** need to create the project subfolder before executing the command.
 
 
 This project template includes:
