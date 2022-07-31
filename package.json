@@ -8,14 +8,13 @@
     "build": "next build",
     "start": "next start",
     "csslint": "npx stylelint \"**/*.css\"",
-    "lint": "next lint && yarn csslint",
+    "lint": "tsc --noEmit && next lint --fix && yarn csslint",
     "prepare": "husky install"
   },
   "dependencies": {
     "eslint-config-prettier": "^8.5.0",
     "headlessui": "^0.0.0",
     "next": "12.2.3",
-    "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -28,6 +27,7 @@
     "eslint-plugin-react": "7.30.1",
     "husky": "8.0.1",
     "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
     "stylelint": "^14.9.1",
     "stylelint-config-standard": "^26.0.0",
     "tailwindcss": "^3.1.7",
