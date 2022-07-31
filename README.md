@@ -6,7 +6,6 @@ Execute:
 
 You **don't** need to create the project subfolder before executing the command.
 
-
 This project template includes:
 
 - Next.js

@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
 export default function Home() {
   return (
@@ -9,10 +9,8 @@ export default function Home() {
       </Head>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome! 
-        </h1>
+        <h1 className="text-6xl font-bold">Welcome!</h1>
       </main>
     </div>
-  )
+  );
 }
