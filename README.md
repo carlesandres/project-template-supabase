@@ -3,15 +3,16 @@
 This project template includes a scaffolded web app with the following:
 
 Main app dependencies:
+
 - [Next.js](https://nextjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [Supabase](https://supabase.com)
 
 And developer tools:
+
 - [Eslint](https://eslint.org/)
 - [Stylelint](https://stylelint.io/)
 - [Husky](https://github.com/typicode/husky)
-
 
 # Installation
 
