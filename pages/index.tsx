@@ -1,11 +1,6 @@
 import Head from 'next/head';
-import Button from 'components/Button';
 
 export default function Home() {
-  const handleClick = () => {
-    alert('click');
-  };
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -15,7 +10,13 @@ export default function Home() {
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <h1 className="text-6xl font-bold">Welcome!</h1>
-        <Button onClick={handleClick}>Click me!</Button>
+
+        <textarea rows={5}
+          className="border border-gray-300 rounded-md p-2 mt-4 w-full
+          max-w-md bg-gray-100/50
+          "
+          />
+
       </main>
     </div>
   );
