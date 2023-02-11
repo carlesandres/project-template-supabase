@@ -20,7 +20,7 @@ export default function Home() {
       setPosts(data);
     };
     fetchPosts();
-  });
+  }, []);
 
   if (error) {
     return <div>{error.message}</div>;
