@@ -26,7 +26,9 @@ export default function Home() {
     return <div>{error.message}</div>;
   }
 
-  const renderedPosts = posts.map((post) => <div key={post.id}>{post.title}</div>);
+  const renderedPosts = posts.map((post) => (
+    <div key={post.id}>{post.title}</div>
+  ));
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
