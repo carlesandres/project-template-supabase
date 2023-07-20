@@ -1,35 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import Head from 'next/head';
-import { supabase } from 'utils/supabaseClient';
+// import { supabase } from 'utils/supabaseClient';
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
-  const [error, setError] = useState(null);
+  // const [posts, setPosts] = useState([]);
+  // const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data, error } = await supabase
-        .from('posts')
-        .select(`*`)
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        setError(error);
-        return;
-      }
-      setPosts(data);
+    //   const { data, error } = await supabase
+    //     .from('posts')
+    //     .select(`*`)
+    //     .order('created_at', { ascending: false });
+    //
+    //   if (error) {
+    //     setError(error);
+    //     return;
+    //   }
+    //   // setPosts(data);
     };
     fetchPosts();
   }, []);
 
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-
-  const renderedPosts = posts.map((post) => (
-    <div key={post.id}>{post.title}</div>
-  ));
-
+  // // if (error) {
+  // //   return <div>{error.message}</div>;
+  // // }
+  // //
+  // const renderedPosts = posts.map((post) => (
+  //   <div key={post.id}>{post.title}</div>
+  // ));
+  //
+  const renderedPosts = <div>posts</div>;
+  
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
