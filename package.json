@@ -16,6 +16,8 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@supabase/supabase-js": "^2.26.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
     "eslint-config-prettier": "^8.8.0",
     "lodash": "^4.17.21",
@@ -24,7 +26,9 @@
     "next": "13.4.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.10.1"
+    "react-icons": "^4.10.1",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.6"
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
