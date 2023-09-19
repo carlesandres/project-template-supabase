@@ -5,8 +5,6 @@ export const metadata: Metadata = {
   title: 'My title',
 };
 
-
-
 export default function Home() {
   // const [posts, setPosts] = useState([]);
   // const [error, setError] = useState<string | null>(null);
@@ -29,7 +27,6 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
-
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">Welcome!</h1>
         {renderedPosts}
