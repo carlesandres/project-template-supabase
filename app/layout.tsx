@@ -1,3 +1,4 @@
+import 'app/globals.css';
 import DesktopNav from 'components/DesktopNav';
 import React from 'react';
 
