@@ -38,9 +38,11 @@ const FeedbackForm = (props: FeedbackFormProps) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea 
+                <Textarea
                   rows={5}
-                  placeholder="Leave your feedback here" {...field} />
+                  placeholder="Leave your feedback here"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
                 We value your feedback. Give us as much detail as you want.
@@ -63,4 +65,3 @@ const FeedbackForm = (props: FeedbackFormProps) => {
 };
 
 export default FeedbackForm;
-

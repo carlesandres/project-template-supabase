@@ -33,7 +33,7 @@ const DesktopNav = () => {
             </div>
           </div>
           <FeedbackButton />
-          { /* <UserAvatar session={session} /> */ }
+          {/* <UserAvatar session={session} /> */}
         </div>
       </nav>
     </header>
@@ -41,4 +41,3 @@ const DesktopNav = () => {
 };
 
 export default DesktopNav;
-

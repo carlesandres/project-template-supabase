@@ -17,10 +17,7 @@ const UserAvatar = (props: UserAvatarProps) => {
   if (!session) {
     return (
       <Button variant="secondary" asChild>
-        <Link
-          href="/login"
-          className="flex gap-2 items-center justify-center"
-        >
+        <Link href="/login" className="flex gap-2 items-center justify-center">
           <LogIn size={14} />
           <span>Login</span>
         </Link>
@@ -45,4 +42,3 @@ const UserAvatar = (props: UserAvatarProps) => {
 };
 
 export default UserAvatar;
-
