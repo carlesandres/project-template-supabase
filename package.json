@@ -8,10 +8,11 @@
     "build": "next build",
     "start": "next start",
     "csslint": "npx stylelint \"**/*.css\"",
-    "prettify": "npx prettier --write --loglevel silent .",
+    "prettify": "npx prettier --write --log-level silent .",
     "lint": "tsc --noEmit && next lint --fix && bun csslint",
     "test": "jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "gen-types": "supabase gen types typescript --linked --schema public > ./types/supabase.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
