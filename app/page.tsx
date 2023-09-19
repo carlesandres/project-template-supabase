@@ -1,27 +1,21 @@
-import { useEffect } from 'react';
-import Head from 'next/head';
-import DesktopNav from 'components/DesktopNav';
+import { Metadata } from 'next';
 // import { supabase } from 'utils/supabaseClient';
+//
+export const metadata: Metadata = {
+  title: 'My title',
+};
+
+
 
 export default function Home() {
   // const [posts, setPosts] = useState([]);
   // const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      //   const { data, error } = await supabase
-      //     .from('posts')
-      //     .select(`*`)
-      //     .order('created_at', { ascending: false });
-      //
-      //   if (error) {
-      //     setError(error);
-      //     return;
-      //   }
-      //   // setPosts(data);
-    };
-    fetchPosts();
-  }, []);
+  //   const { data, error } = await supabase
+  //     .from('posts')
+  //     .select(`*`)
+  //     .order('created_at', { ascending: false });
+  //
 
   // // if (error) {
   // //   return <div>{error.message}</div>;
@@ -35,11 +29,6 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <DesktopNav />
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">Welcome!</h1>
