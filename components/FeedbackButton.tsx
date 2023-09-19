@@ -85,7 +85,7 @@ const FeedbackButton = () => {
           Feedback
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-72 sm:w-[600px]" >
+      <PopoverContent className="w-72 sm:w-[600px]">
         {success ? (
           successMsg
         ) : (
@@ -97,4 +97,3 @@ const FeedbackButton = () => {
 };
 
 export default FeedbackButton;
-
