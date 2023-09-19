@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
+import DesktopNav from 'components/DesktopNav';
 // import { supabase } from 'utils/supabaseClient';
 
 export default function Home() {
@@ -38,6 +39,7 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <DesktopNav />
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">Welcome!</h1>
