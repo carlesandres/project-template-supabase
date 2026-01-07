@@ -11,12 +11,16 @@ const Layout = (props: LayoutProps) => {
   const { children } = props;
 
   return (
-    <QueryProvider>
-      <div>
-        <DesktopNav />
-        {children}
-      </div>
-    </QueryProvider>
+    <html lang="en">
+      <body>
+        <QueryProvider>
+          <div>
+            <DesktopNav />
+            {children}
+          </div>
+        </QueryProvider>
+      </body>
+    </html>
   );
 };
 
