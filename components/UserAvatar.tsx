@@ -5,7 +5,7 @@ import { Session } from '@supabase/auth-helpers-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { LogIn } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from 'components/ui/button';
 
 interface UserAvatarProps {
   session?: Session | null;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@/components/ui/button';
+import { Button } from 'components/ui/button';
 import {
   Form,
   FormControl,
@@ -10,9 +10,9 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from '@/components/ui/form';
+} from 'components/ui/form';
 import { formSchema } from './FeedbackButton';
-import { Textarea } from '@/components/ui/textarea';
+import { Textarea } from 'components/ui/textarea';
 
 interface FeedbackFormProps {
   onSubmit: (values: z.infer<typeof formSchema>) => void;

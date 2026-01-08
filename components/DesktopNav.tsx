@@ -6,7 +6,7 @@ import { AlignJustify, Activity, Search } from 'lucide-react';
 import FeedbackButton from './FeedbackButton';
 // import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 // import { cookies } from 'next/headers';
-// import { Database } from '@/types/supabase';
+// import { Database } from 'types/supabase';
 
 const navigation = [
   { name: 'Learn', href: '/', icon: <AlignJustify size={16} /> },
