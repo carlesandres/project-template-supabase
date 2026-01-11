@@ -1,8 +1,11 @@
 'use client';
+
 import React from 'react';
 import NavigationLink from 'components/NavigationLink';
 // import UserAvatar from 'components/UserAvatar';
 import { AlignJustify, Activity, Search } from 'lucide-react';
+import { Button } from 'components/ui/button';
+import { useUIStore } from 'stores/ui-store';
 import FeedbackButton from './FeedbackButton';
 // import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 // import { cookies } from 'next/headers';
@@ -14,7 +17,14 @@ const navigation = [
   { name: 'Search', href: '/search', icon: <Search size={16} /> },
 ];
 
+const getModifierKeyLabel = () => {
+  if (typeof navigator === 'undefined') return 'Ctrl';
+  return navigator.platform.toLowerCase().includes('mac') ? '⌘' : 'Ctrl';
+};
+
 const DesktopNav = () => {
+  const openCommandPalette = useUIStore((state) => state.openCommandPalette);
+
   // const supabase = createServerComponentClient<Database>({ cookies });
   // const { data: { session } = {} } = await supabase.auth.getSession();
 
@@ -32,6 +42,21 @@ const DesktopNav = () => {
               ))}
             </div>
           </div>
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-2"
+            onClick={openCommandPalette}
+          >
+            <Search size={16} />
+            <span className="hidden sm:inline">Command</span>
+            <span className="ml-1 hidden items-center gap-1 text-xs text-muted-foreground sm:inline-flex">
+              <kbd className="rounded border bg-muted px-1.5 py-0.5">
+                {getModifierKeyLabel()}
+              </kbd>
+              <kbd className="rounded border bg-muted px-1.5 py-0.5">K</kbd>
+            </span>
+          </Button>
           <FeedbackButton />
           {/* <UserAvatar session={session} /> */}
         </div>
