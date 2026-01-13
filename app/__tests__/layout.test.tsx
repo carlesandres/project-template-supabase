@@ -3,13 +3,23 @@ import { render, screen } from '@testing-library/react';
 import Layout from '../layout';
 
 // Mock the components
-jest.mock('components/DesktopNav', () => {
-  return function MockDesktopNav() {
-    return <div data-testid="desktop-nav">Desktop Nav</div>;
+vi.mock('components/DesktopNav', () => {
+  return {
+    default: function MockDesktopNav() {
+      return <div data-testid="desktop-nav">Desktop Nav</div>;
+    },
   };
 });
 
-jest.mock('providers/query-provider', () => ({
+vi.mock('components/CommandPalette', () => {
+  return {
+    default: function MockCommandPalette() {
+      return <div data-testid="command-palette" />;
+    },
+  };
+});
+
+vi.mock('providers/query-provider', () => ({
   QueryProvider: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="query-provider">{children}</div>
   ),

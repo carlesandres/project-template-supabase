@@ -11,12 +11,16 @@ import {
 import { supabase } from 'utils/supabaseClient';
 import React from 'react';
 
+import type { Mock } from 'vitest';
+
 // Mock Supabase client
-jest.mock('utils/supabaseClient', () => ({
+vi.mock('utils/supabaseClient', () => ({
   supabase: {
-    from: jest.fn(),
+    from: vi.fn(),
   },
 }));
+
+const supabaseFromMock = supabase.from as unknown as Mock;
 
 const createWrapper = () => {
   const queryClient = new QueryClient({
@@ -49,7 +53,7 @@ describe('postsKeys', () => {
 
 describe('usePosts', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should fetch posts successfully', async () => {
@@ -58,13 +62,13 @@ describe('usePosts', () => {
       { id: '2', title: 'Post 2', created_at: '2024-01-02' },
     ];
 
-    const mockSelect = jest.fn().mockReturnThis();
-    const mockOrder = jest.fn().mockResolvedValue({
+    const mockSelect = vi.fn().mockReturnThis();
+    const mockOrder = vi.fn().mockResolvedValue({
       data: mockPosts,
       error: null,
     });
 
-    (supabase.from as jest.Mock).mockReturnValue({
+    supabaseFromMock.mockReturnValue({
       select: mockSelect,
       order: mockOrder,
     });
@@ -88,13 +92,13 @@ describe('usePosts', () => {
   it('should handle fetch error', async () => {
     const mockError = new Error('Database error');
 
-    const mockSelect = jest.fn().mockReturnThis();
-    const mockOrder = jest.fn().mockResolvedValue({
+    const mockSelect = vi.fn().mockReturnThis();
+    const mockOrder = vi.fn().mockResolvedValue({
       data: null,
       error: mockError,
     });
 
-    (supabase.from as jest.Mock).mockReturnValue({
+    supabaseFromMock.mockReturnValue({
       select: mockSelect,
       order: mockOrder,
     });
@@ -113,7 +117,7 @@ describe('usePosts', () => {
 
 describe('usePost', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should fetch a single post successfully', async () => {
@@ -124,14 +128,14 @@ describe('usePost', () => {
       created_at: '2024-01-01',
     };
 
-    const mockSelect = jest.fn().mockReturnThis();
-    const mockEq = jest.fn().mockReturnThis();
-    const mockSingle = jest.fn().mockResolvedValue({
+    const mockSelect = vi.fn().mockReturnThis();
+    const mockEq = vi.fn().mockReturnThis();
+    const mockSingle = vi.fn().mockResolvedValue({
       data: mockPost,
       error: null,
     });
 
-    (supabase.from as jest.Mock).mockReturnValue({
+    supabaseFromMock.mockReturnValue({
       select: mockSelect,
       eq: mockEq,
       single: mockSingle,
@@ -162,21 +166,21 @@ describe('usePost', () => {
 
 describe('useCreatePost', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should create a post successfully', async () => {
     const newPost = { title: 'New Post', content: 'Content' };
     const createdPost = { id: '1', ...newPost, created_at: '2024-01-01' };
 
-    const mockInsert = jest.fn().mockReturnThis();
-    const mockSelect = jest.fn().mockReturnThis();
-    const mockSingle = jest.fn().mockResolvedValue({
+    const mockInsert = vi.fn().mockReturnThis();
+    const mockSelect = vi.fn().mockReturnThis();
+    const mockSingle = vi.fn().mockResolvedValue({
       data: createdPost,
       error: null,
     });
 
-    (supabase.from as jest.Mock).mockReturnValue({
+    supabaseFromMock.mockReturnValue({
       insert: mockInsert,
       select: mockSelect,
       single: mockSingle,
@@ -200,14 +204,14 @@ describe('useCreatePost', () => {
     const newPost = { title: 'New Post' };
     const mockError = new Error('Insert failed');
 
-    const mockInsert = jest.fn().mockReturnThis();
-    const mockSelect = jest.fn().mockReturnThis();
-    const mockSingle = jest.fn().mockResolvedValue({
+    const mockInsert = vi.fn().mockReturnThis();
+    const mockSelect = vi.fn().mockReturnThis();
+    const mockSingle = vi.fn().mockResolvedValue({
       data: null,
       error: mockError,
     });
 
-    (supabase.from as jest.Mock).mockReturnValue({
+    supabaseFromMock.mockReturnValue({
       insert: mockInsert,
       select: mockSelect,
       single: mockSingle,
@@ -229,7 +233,7 @@ describe('useCreatePost', () => {
 
 describe('useUpdatePost', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should update a post successfully', async () => {
@@ -240,15 +244,15 @@ describe('useUpdatePost', () => {
       created_at: '2024-01-01',
     };
 
-    const mockUpdate = jest.fn().mockReturnThis();
-    const mockEq = jest.fn().mockReturnThis();
-    const mockSelect = jest.fn().mockReturnThis();
-    const mockSingle = jest.fn().mockResolvedValue({
+    const mockUpdate = vi.fn().mockReturnThis();
+    const mockEq = vi.fn().mockReturnThis();
+    const mockSelect = vi.fn().mockReturnThis();
+    const mockSingle = vi.fn().mockResolvedValue({
       data: updatedPost,
       error: null,
     });
 
-    (supabase.from as jest.Mock).mockReturnValue({
+    supabaseFromMock.mockReturnValue({
       update: mockUpdate,
       eq: mockEq,
       select: mockSelect,
@@ -273,16 +277,16 @@ describe('useUpdatePost', () => {
 
 describe('useDeletePost', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should delete a post successfully', async () => {
-    const mockDelete = jest.fn().mockReturnThis();
-    const mockEq = jest.fn().mockResolvedValue({
+    const mockDelete = vi.fn().mockReturnThis();
+    const mockEq = vi.fn().mockResolvedValue({
       error: null,
     });
 
-    (supabase.from as jest.Mock).mockReturnValue({
+    supabaseFromMock.mockReturnValue({
       delete: mockDelete,
       eq: mockEq,
     });
@@ -304,12 +308,12 @@ describe('useDeletePost', () => {
   it('should handle delete error', async () => {
     const mockError = new Error('Delete failed');
 
-    const mockDelete = jest.fn().mockReturnThis();
-    const mockEq = jest.fn().mockResolvedValue({
+    const mockDelete = vi.fn().mockReturnThis();
+    const mockEq = vi.fn().mockResolvedValue({
       error: mockError,
     });
 
-    (supabase.from as jest.Mock).mockReturnValue({
+    supabaseFromMock.mockReturnValue({
       delete: mockDelete,
       eq: mockEq,
     });

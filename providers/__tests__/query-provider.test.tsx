@@ -45,7 +45,7 @@ describe('QueryProvider', () => {
   });
 
   it('should configure default query options', async () => {
-    const mockQueryFn = jest.fn().mockResolvedValue('data');
+    const mockQueryFn = vi.fn().mockResolvedValue('data');
 
     const TestQueryOptions = () => {
       const { data } = useQuery({
