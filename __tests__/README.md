@@ -22,18 +22,19 @@ providers/__tests__/
 
 ```bash
 # Run all tests
-npm test
-# or
-npx jest
+bun run test
 
 # Run tests in watch mode
-npx jest --watch
+bun run test:watch
+
+# Run tests with UI
+bun run test:ui
 
 # Run tests with coverage
-npx jest --coverage
+bun run test:coverage
 
-# Run specific test file
-npx jest app/__tests__/layout.test.tsx
+# Run a specific test file
+bun run test -- app/__tests__/layout.test.tsx
 ```
 
 ## Test Coverage
@@ -118,12 +119,12 @@ const { result } = renderHook(() => useMyHook(), {
 All Supabase client methods are mocked in test files:
 
 ```tsx
-jest.mock('utils/supabaseClient', () => ({
+vi.mock('utils/supabaseClient', () => ({
   supabase: {
-    from: jest.fn(),
+    from: vi.fn(),
     auth: {
-      getSession: jest.fn(),
-      signIn: jest.fn(),
+      getSession: vi.fn(),
+      signInWithPassword: vi.fn(),
       // ...
     },
   },
@@ -132,11 +133,11 @@ jest.mock('utils/supabaseClient', () => ({
 
 ## Test Configuration
 
-- **Framework**: Jest 29
+- **Framework**: Vitest
 - **Environment**: jsdom (for DOM testing)
 - **Testing Library**: @testing-library/react
-- **Mock Support**: jest.fn(), jest.mock()
-- **Path Aliases**: Configured in `jest.config.js`
+- **Mock Support**: vi.fn(), vi.mock()
+- **Path Aliases**: Configured in `vitest.config.ts`
 
 ## Adding New Tests
 

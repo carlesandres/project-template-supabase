@@ -20,4 +20,21 @@ export default defineConfig([
   {
     extends: [...nextCoreWebVitals, ...compat.extends('prettier')],
   },
+  {
+    files: [
+      '**/*.{test,spec}.{ts,tsx}',
+      '**/__tests__/**/*.{ts,tsx}',
+      'test/**/*.{ts,tsx}',
+    ],
+    languageOptions: {
+      globals: {
+        afterEach: 'readonly',
+        beforeEach: 'readonly',
+        describe: 'readonly',
+        expect: 'readonly',
+        it: 'readonly',
+        vi: 'readonly',
+      },
+    },
+  },
 ]);

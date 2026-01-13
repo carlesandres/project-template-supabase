@@ -1,28 +1,17 @@
 import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
+import 'test/mocks/next';
+import { pushMock } from 'test/mocks/next';
 import CommandPalette from 'components/CommandPalette';
 import { useUIStore } from 'stores/ui-store';
 
-const pushMock = jest.fn();
-
-jest.mock('next/navigation', () => ({
-  useRouter() {
-    return {
-      push: pushMock,
-      replace: jest.fn(),
-      prefetch: jest.fn(),
-      back: jest.fn(),
-    };
-  },
-}));
+beforeEach(() => {
+  pushMock.mockClear();
+  useUIStore.getState().setCommandPaletteOpen(false);
+});
 
 describe('CommandPalette', () => {
-  beforeEach(() => {
-    pushMock.mockClear();
-    useUIStore.getState().setCommandPaletteOpen(false);
-  });
-
   it('is closed by default', () => {
     render(<CommandPalette />);
     expect(
