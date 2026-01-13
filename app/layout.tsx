@@ -1,5 +1,6 @@
 import 'app/globals.css';
 import DesktopNav from 'components/DesktopNav';
+import CommandPalette from 'components/CommandPalette';
 import React from 'react';
 import { QueryProvider } from 'providers/query-provider';
 
@@ -14,6 +15,7 @@ const Layout = (props: LayoutProps) => {
     <html lang="en">
       <body>
         <QueryProvider>
+          <CommandPalette />
           <div>
             <DesktopNav />
             {children}

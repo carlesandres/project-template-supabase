@@ -22,6 +22,21 @@ jest.mock('next/navigation', () => ({
   },
 }));
 
+// Polyfills required by some UI libraries (e.g. cmdk)
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+if (!global.ResizeObserver) {
+  global.ResizeObserver = ResizeObserverMock;
+}
+
+if (!Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = () => {};
+}
+
 // Suppress console errors in tests
 global.console = {
   ...console,
