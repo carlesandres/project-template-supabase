@@ -11,7 +11,6 @@ Main app dependencies:
 And developer tools:
 
 - [Eslint](https://eslint.org/)
-- [Stylelint](https://stylelint.io/)
 - [Husky](https://github.com/typicode/husky)
 
 # Installation
