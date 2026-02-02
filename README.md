@@ -1,6 +1,6 @@
 # Description
 
-This project template includes a scaffolded web app with the following:
+This project template includes a scaffold web app with the following:
 
 Main app dependencies:
 
@@ -14,12 +14,30 @@ And developer tools:
 - [Stylelint](https://stylelint.io/)
 - [Husky](https://github.com/typicode/husky)
 
-# Installation
+## Installation
 
-To create a new app based on this project template :
+```bash
+bun create carlesandres/project-template-supabase <projectname>
+```
 
-    yarn create next-app -e https://github.com/carlesandres/project-template-supabase
+```bash
+pnpm dlx degit carlesandres/project-template-supabase <projectname>
+```
 
-**NOTE**: You **don't** need to create the project subfolder before executing the command.
+```bash
+npx degit carlesandres/project-template-supabase <projectname>
+```
 
-You will need to setup a project in [Supabase](app.supabase.com) and define `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in your `.env.local` file.
+```bash
+yarn dlx degit carlesandres/project-template-supabase <projectname>
+```
+
+## Configuration
+
+You will need to setup project in [Supabase](app.supabase.com) and follow their
+instructions to populate the following .env vars:
+
+```.env
+NEXT_PUBLIC_SUPABASE_URL=kasjdlasjdlaksjd
+NEXT_PUBLIC_SUPABASE_ANON_KEY=alkdjalskdjlaskdjalksdj
+```
