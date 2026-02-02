@@ -1,7 +1,6 @@
 {
-  "name": "project-template",
+  "name": "placeholder",
   "version": "0.0.0",
-  "repository": "github:carlesandres/project-template-supabase",
   "private": true,
   "scripts": {
     "dev": "bun run --bun next dev",
@@ -17,7 +16,6 @@
     "gen-types": "supabase gen types typescript --linked --schema public > ./types/supabase.ts"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.17",
     "@hookform/resolvers": "^3.6.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
