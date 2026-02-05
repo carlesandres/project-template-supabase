@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
-// import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover';
 import { Button } from 'components/ui/button';
 import FeedbackForm from './FeedbackForm';
@@ -12,6 +11,7 @@ import { z } from 'zod';
 import { Alert, AlertTitle, AlertDescription } from 'components/ui/alert';
 // import { Database } from 'types/supabase';
 import { PopoverClose } from '@radix-ui/react-popover';
+import { useUIStore } from 'stores/ui-store';
 
 export const formSchema = z.object({
   feedback: z.string().min(10).max(500),
@@ -20,39 +20,40 @@ export const formSchema = z.object({
 const FeedbackButton = () => {
   // const supabase = createClientComponentClient<Database>();
   // const user = useUser();
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [open, setOpen] = useState(false);
+  const open = useUIStore((state) => state.feedbackModal.open);
+  const success = useUIStore((state) => state.feedbackModal.success);
+  const error = useUIStore((state) => state.feedbackModal.error);
+  const setOpen = useUIStore((state) => state.setFeedbackModalOpen);
+  const setSuccess = useUIStore((state) => state.setFeedbackSuccess);
+  const resetFeedbackModal = useUIStore((state) => state.resetFeedbackModal);
 
   //Replace with below function when supabase project is fully setup
   const onSubmit = () => {
     console.log('submit');
+    setSuccess(true);
   };
 
   // const onSubmit = useCallback(
   //   async (values: z.infer<typeof formSchema>) => {
-  //     setError(false);
+  //     setFeedbackError(false);
   //     const { error } = await supabase
   //       .from('feedback')
   //       .insert({ feedback: values.feedback, user_id: user?.id });
   //
   //     if (error) {
-  //       setError(true);
+  //       setFeedbackError(true);
   //       return;
   //     }
   //
-  //     setSuccess(true);
+  //     setFeedbackSuccess(true);
   //   },
   //   [supabase, user],
   // );
 
   const resetForm = () => {
-    setOpen(false);
-
     // Reset the form when the close animation is done
     setTimeout(() => {
-      setSuccess(false);
-      setError(false);
+      resetFeedbackModal();
     }, 500);
   };
 
