@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Session } from '@supabase/auth-helpers-react';
+import { Session } from '@supabase/supabase-js';
 import Image from 'next/image';
 import Link from 'next/link';
 import { LogIn } from 'lucide-react';

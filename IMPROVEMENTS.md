@@ -6,18 +6,34 @@ This document tracks planned improvements for the project. Work on these items o
 
 ### Add Zustand for UI State Management
 
-**Status:** Planned  
+**Status:** ✅ Completed  
 **Priority:** High
 
 Replace ad-hoc state management with Zustand for better UI state coordination.
 
 **Tasks:**
 
-- [ ] Install zustand
-- [ ] Create store structure for UI state (sidebar, modals, themes, etc.)
-- [ ] Migrate existing useState/useContext patterns to Zustand stores
-- [ ] Add persistence middleware for user preferences
-- [ ] Document store usage patterns
+- [x] Install zustand
+- [x] Create initial store structure (Command Palette state)
+- [x] Expand store to include sidebar, modals, and theme state
+- [x] Migrate existing useState/useContext patterns to Zustand stores
+- [x] Add persistence middleware for user preferences
+- [x] Document store usage patterns
+
+**Implementation Details:**
+
+- Installed `zustand@5.0.11` and `immer@11.1.3`
+- Created `stores/ui-store.ts` with comprehensive UI state management:
+  - Command Palette: open state + history (max 10 items)
+  - Feedback Modal: open, success, error states
+  - Theme: preference synced with next-themes
+  - Layout: sidebar open/width
+- Configured middleware stack: `persist(immer(...))`
+- Persistence to localStorage for user preferences (theme, layout, command history)
+- Migrated `FeedbackButton.tsx` from local useState to Zustand
+- Created `ThemeProvider` that syncs Zustand with next-themes
+- Added comprehensive test coverage (22 tests passing)
+- Created `stores/README.md` with usage documentation
 
 **Benefits:**
 
@@ -25,6 +41,7 @@ Replace ad-hoc state management with Zustand for better UI state coordination.
 - Better DevTools support
 - Simpler state logic compared to Context API
 - Less boilerplate than Redux
+- User preferences persist across sessions
 
 ---
 
@@ -70,26 +87,35 @@ Implement TanStack Query (React Query) for efficient server state management.
 
 ### Replace Jest with Vitest
 
-**Status:** Planned  
+**Status:** ✅ Completed  
 **Priority:** Medium
 
 Migrate from Jest to Vitest for faster, more modern testing.
 
 **Tasks:**
 
-- [ ] Install vitest and related dependencies
-- [ ] Update test configuration (vitest.config.ts)
-- [ ] Migrate Jest config to Vitest equivalents
-- [ ] Update test scripts in package.json
-- [ ] Migrate existing tests to Vitest syntax (if any breaking changes)
-- [ ] Configure coverage reporting
-- [ ] Update CI/CD pipeline if needed
-- [ ] Remove Jest dependencies
+- [x] Install vitest and related dependencies
+- [x] Update test configuration (vitest.config.ts)
+- [x] Migrate Jest config to Vitest equivalents
+- [x] Update test scripts in package.json
+- [x] Migrate existing tests to Vitest syntax (if any breaking changes)
+- [x] Configure coverage reporting
+- [x] Update CI/CD pipeline if needed
+- [x] Remove Jest dependencies
+
+**Implementation Details:**
+
+- Installed `vitest@4.0.18`, `@vitest/ui@4.0.18`, and `@vitest/coverage-v8@4.0.18`
+- Created `vitest.config.ts` with jsdom environment and path aliases
+- Created `vitest.setup.ts` with necessary mocks and @testing-library/jest-dom integration
+- Updated all test scripts in package.json to use vitest
+- All 47 tests passing across 7 test suites
+- Configured v8 coverage provider with text and HTML reporters
 
 **Benefits:**
 
 - Native ESM support
-- Faster test execution
+- Faster test execution (2.08s for 47 tests)
 - Better Vite integration
 - Modern API similar to Jest
 - Built-in TypeScript support
