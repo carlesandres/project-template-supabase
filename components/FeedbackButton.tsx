@@ -20,9 +20,7 @@ export const formSchema = z.object({
 const FeedbackButton = () => {
   // const supabase = createClientComponentClient<Database>();
   // const user = useUser();
-  const open = useUIStore((state) => state.feedbackModal.open);
-  const success = useUIStore((state) => state.feedbackModal.success);
-  const error = useUIStore((state) => state.feedbackModal.error);
+  const { open, success, error } = useUIStore((state) => state.feedbackModal);
   const setOpen = useUIStore((state) => state.setFeedbackModalOpen);
   const setSuccess = useUIStore((state) => state.setFeedbackSuccess);
   const resetFeedbackModal = useUIStore((state) => state.resetFeedbackModal);
