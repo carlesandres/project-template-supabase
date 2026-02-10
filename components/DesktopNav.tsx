@@ -7,6 +7,7 @@ import { AlignJustify, Activity, Search } from 'lucide-react';
 import { Button } from 'components/ui/button';
 import { useUIStore } from 'stores/ui-store';
 import FeedbackButton from './FeedbackButton';
+import { ThemeToggle } from './ThemeToggle';
 // import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 // import { cookies } from 'next/headers';
 // import { Database } from 'types/supabase';
@@ -58,6 +59,7 @@ const DesktopNav = () => {
             </span>
           </Button>
           <FeedbackButton />
+          <ThemeToggle />
           {/* <UserAvatar session={session} /> */}
         </div>
       </nav>
