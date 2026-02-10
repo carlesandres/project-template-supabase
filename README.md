@@ -17,7 +17,7 @@ And developer tools:
 ## Installation
 
 ```bash
-bun create carlesandres/project-template-supabase <projectname>
+bunx degit carlesandres/project-template-supabase
 ```
 
 ```bash
@@ -38,6 +38,6 @@ You will need to setup project in [Supabase](app.supabase.com) and follow their
 instructions to populate the following .env vars:
 
 ```.env
-NEXT_PUBLIC_SUPABASE_URL=kasjdlasjdlaksjd
-NEXT_PUBLIC_SUPABASE_ANON_KEY=alkdjalskdjlaskdjalksdj
+NEXT_PUBLIC_SUPABASE_URL=<some-value>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<some-other-value>
 ```
