@@ -1,7 +1,7 @@
 'use client';
 
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { useEffect } from 'react';
+import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes';
+import { useEffect, useRef } from 'react';
 import { useUIStore, type ThemePreference } from 'stores/ui-store';
 
 interface ThemeProviderProps {
@@ -12,54 +12,44 @@ interface ThemeProviderProps {
  * Theme provider that syncs next-themes with Zustand store.
  *
  * - next-themes handles system detection and CSS class switching
- * - Zustand stores the user's explicit preference (persisted)
- * - On mount, we sync Zustand preference to next-themes
+ * - Zustand is the source of truth for the user's theme preference
+ * - ThemeSync pushes Zustand changes to next-themes
  */
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const theme = useUIStore((state) => state.theme);
-  const setTheme = useUIStore((state) => state.setTheme);
+  const zustandTheme = useUIStore((state) => state.theme);
 
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme={theme}
+      defaultTheme={zustandTheme}
       enableSystem
       disableTransitionOnChange
     >
-      <ThemeSync theme={theme} setTheme={setTheme} />
+      <ThemeSync />
       {children}
     </NextThemesProvider>
   );
 }
 
 /**
- * Inner component that syncs theme changes between next-themes and Zustand.
- * Must be inside NextThemesProvider to access useTheme hook.
+ * Inner component that syncs Zustand theme to next-themes.
+ * Must be inside NextThemesProvider to access the useTheme hook.
+ *
+ * Zustand is the single source of truth. When the store changes
+ * (e.g. ThemeToggle), this effect tells next-themes to update
+ * the DOM class and color-scheme.
  */
-function ThemeSync({
-  theme: zustandTheme,
-  setTheme: setZustandTheme,
-}: {
-  theme: ThemePreference;
-  setTheme: (theme: ThemePreference) => void;
-}) {
-  // We need to dynamically import useTheme to avoid SSR issues
-  // next-themes provides useTheme which we can use inside the provider
-  useEffect(() => {
-    // On mount, the zustand theme is already set as defaultTheme
-    // This effect handles syncing when theme changes from next-themes UI
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'theme' && e.newValue) {
-        const newTheme = e.newValue as ThemePreference;
-        if (newTheme !== zustandTheme) {
-          setZustandTheme(newTheme);
-        }
-      }
-    };
+function ThemeSync() {
+  const { setTheme: setNextTheme } = useTheme();
+  const zustandTheme = useUIStore((state) => state.theme);
+  const prevTheme = useRef(zustandTheme);
 
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
-  }, [zustandTheme, setZustandTheme]);
+  useEffect(() => {
+    if (zustandTheme !== prevTheme.current) {
+      prevTheme.current = zustandTheme;
+      setNextTheme(zustandTheme);
+    }
+  }, [zustandTheme, setNextTheme]);
 
   return null;
 }

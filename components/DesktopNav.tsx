@@ -30,7 +30,7 @@ const DesktopNav = () => {
   // const { data: { session } = {} } = await supabase.auth.getSession();
 
   return (
-    <header className="fixed top-0 z-10 w-full bg-white border-b border-gray-100 print:hidden">
+    <header className="fixed top-0 z-10 w-full bg-background border-b border-border print:hidden">
       <nav className="mx-auto max-w-4xl px-6 lg:px-0" aria-label="Top">
         <div className="flex gap-4 h-16 w-full items-center justify-between lg:border-none">
           <div className="flex items-center gap-8 flex-1">
